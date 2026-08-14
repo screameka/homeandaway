@@ -1,0 +1,133 @@
+/* ==========================================================================
+   EDITORIAL FOOTER & PAGE CLOSURE (STEP 5)
+   ========================================================================== */
+
+.site-footer {
+  width: 100%;
+  margin-top: clamp(5rem, 12vh, 10rem);
+  padding-bottom: clamp(2rem, 4vh, 3.5rem);
+}
+
+/* Subtle Structural Boundary Line */
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-primary);
+  opacity: 0.9;
+  border: none;
+  margin-bottom: clamp(1.75rem, 4vh, 2.75rem);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------------
+   LEFT: WORDMARK & CURATORIAL IMPRINT
+   ------------------------------------------------------------------------ */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.footer-brand {
+  font-size: var(--fs-footer);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  line-height: var(--lh-tight);
+}
+
+.footer-imprint {
+  font-size: clamp(9px, 0.95vw, 11px);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  opacity: 0.8;
+  line-height: var(--lh-tight);
+}
+
+/* ------------------------------------------------------------------------
+   CENTER: QUIET NAVIGATION LINKS
+   ------------------------------------------------------------------------ */
+.footer-nav {
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: center;
+}
+
+.footer-link {
+  font-size: clamp(9.5px, 1vw, 11px);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.footer-link:hover {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------------
+   RIGHT: LOCATION & COPYRIGHT
+   ------------------------------------------------------------------------ */
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.footer-location,
+.footer-copyright {
+  font-size: var(--fs-footer);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  opacity: 0.9;
+  line-height: var(--lh-tight);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS (MOBILE RESTRAINED STACK)
+   ------------------------------------------------------------------------ */
+@media (max-width: 640px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.75rem;
+  }
+
+  .footer-nav {
+    gap: 1.5rem;
+  }
+
+  .footer-right {
+    align-items: flex-start;
+  }
+
+  .footer-brand,
+  .footer-location,
+  .footer-copyright {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+  }
+
+  .footer-imprint,
+  .footer-link {
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+  }
+}

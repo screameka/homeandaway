@@ -1,0 +1,162 @@
+/* ==========================================================================
+   HOME & AWAY — DESIGN SYSTEM & VISUAL FOUNDATION (STEP 1)
+   Art Division: ALIEN CANVAS | Parent Company: ALIEN CULTURE
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     COLOR SYSTEM (Restrained Mineral / Space-Grey Palette)
+     ------------------------------------------------------------------------ */
+  --bg-primary: #AFAEAC;          /* Soft mineral grey background */
+  --bg-mineral-flat: #ACABA9;      /* Subtle flat mineral tonal surface */
+  --text-primary: #0B0B0B;        /* Crisp near-black primary text */
+  --text-secondary: #383838;      /* Dark grey secondary text */
+  --text-muted: #555555;          /* Muted metadata grey */
+  --border-primary: #0B0B0B;      /* Solid near-black divider line */
+  --border-subtle: rgba(11, 11, 11, 0.2); /* Subtle line for structural grid */
+
+  /* ------------------------------------------------------------------------
+     TYPOGRAPHY FOUNDATION
+     ------------------------------------------------------------------------ */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Tracking / Letter-Spacing Scale */
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.18em;
+  --tracking-widest: 0.28em;
+  --tracking-ultra: 0.35em;
+
+  /* Font Weight Scale */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  /* Type Size Scale (Fluid & Restrained) */
+  --fs-nav: clamp(10px, 1.1vw, 12px);       /* Very small quiet header nav */
+  --fs-meta: clamp(10px, 1.1vw, 12px);      /* Small uppercase metadata */
+  --fs-body: clamp(12px, 1.25vw, 14px);     /* Body text */
+  --fs-title: clamp(14px, 1.6vw, 17px);     /* Section titles (e.g. THE LIST) */
+  --fs-hero-meta: clamp(13px, 1.5vw, 16px); /* Exhibition location/date */
+  --fs-footer: clamp(10px, 1.1vw, 12px);    /* Footer metadata */
+
+  /* Line Heights */
+  --lh-tight: 1.2;
+  --lh-editorial: 1.6;
+  --lh-loose: 1.8;
+
+  /* ------------------------------------------------------------------------
+     SPACING & LAYOUT SYSTEM
+     ------------------------------------------------------------------------ */
+  --space-3xs: 0.25rem;  /* 4px */
+  --space-2xs: 0.5rem;   /* 8px */
+  --space-xs: 1rem;      /* 16px */
+  --space-sm: 1.5rem;    /* 24px */
+  --space-md: 2.5rem;    /* 40px */
+  --space-lg: 4rem;      /* 64px */
+  --space-xl: 6rem;      /* 96px */
+  --space-2xl: 9rem;     /* 144px */
+
+  /* Responsive Container & Viewport constraints */
+  --container-max: 1280px;
+  --container-pad: clamp(1.25rem, 5vw, 4rem);
+
+  /* Logo constraints */
+  --logo-max-w: clamp(260px, 50vw, 440px);
+}
+
+/* ------------------------------------------------------------------------
+   GLOBAL RESETS & GALLERY WALL CANVAS
+   ------------------------------------------------------------------------ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: var(--lh-editorial);
+  overflow-x: hidden;
+}
+
+/* Prevent image selection or dragging for clean editorial presentation */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ------------------------------------------------------------------------
+   LAYOUT CONTAINERS & UTILITIES
+   ------------------------------------------------------------------------ */
+.site-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+/* Base Editorial Page Structure */
+.page-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Mineral Texture Overlay (Subtle, non-gradient surface) */
+.mineral-surface {
+  background-color: var(--bg-primary);
+}
+
+/* Logo Display Rules (Preserves original aspect ratio and sculptured depth) */
+.sculptural-logo {
+  width: 100%;
+  max-width: var(--logo-max-w);
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply; /* Blends white background seamlessly into mineral grey */
+  margin: 0 auto;
+}
+
+/* Quiet Metadata Typography */
+.meta-uppercase {
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+/* Divider Line */
+.editorial-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-primary);
+  border: none;
+}

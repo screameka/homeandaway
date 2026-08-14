@@ -1,0 +1,84 @@
+/* ==========================================================================
+   HOME & AWAY — APPLICATION COMPONENT STYLES (STEP 1)
+   ========================================================================== */
+
+/* Shell Layout */
+.app-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* Header Container */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: var(--space-md);
+}
+
+.header-brand {
+  font-size: var(--fs-nav);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.header-nav {
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: center;
+}
+
+.nav-link {
+  font-size: var(--fs-nav);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+/* Main Content Area Container */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-md);
+}
+
+/* Foundation Logo Container */
+.logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-sm) 0;
+}
+
+/* Mobile Responsiveness Guard */
+@media (max-width: 640px) {
+  .site-header {
+    flex-direction: row;
+    gap: var(--space-xs);
+  }
+
+  .header-nav {
+    gap: var(--space-xs);
+  }
+}

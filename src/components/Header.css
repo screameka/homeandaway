@@ -1,0 +1,59 @@
+/* Header Styling - Quiet, Minimalist & Editorial */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: clamp(1.75rem, 3.5vh, 2.75rem);
+  padding-bottom: clamp(1.5rem, 3vh, 2.25rem);
+}
+
+.header-wordmark a {
+  font-size: var(--fs-nav);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 3.8vw, 3.5rem);
+}
+
+.nav-link {
+  font-size: var(--fs-nav);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  text-decoration: none;
+  opacity: 0.9;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+/* Mobile Responsiveness Rules for Header */
+@media (max-width: 640px) {
+  .site-header {
+    padding-top: 1.5rem;
+    padding-bottom: 1.25rem;
+  }
+  
+  .header-nav {
+    gap: clamp(0.85rem, 3vw, 1.5rem);
+  }
+
+  .header-wordmark a,
+  .nav-link {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+  }
+}

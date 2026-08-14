@@ -1,0 +1,189 @@
+/* ==========================================================================
+   WAITLIST / EMAIL CAPTURE SECTION (STEP 4)
+   ========================================================================== */
+
+.waitlist-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: clamp(4.5rem, 11vh, 9.5rem);
+  margin-bottom: clamp(6rem, 14vh, 11rem);
+}
+
+.waitlist-content {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* ------------------------------------------------------------------------
+   TYPOGRAPHY
+   ------------------------------------------------------------------------ */
+.waitlist-title {
+  font-size: clamp(14px, 1.4vw, 17px);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-ultra);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+  line-height: var(--lh-tight);
+}
+
+.waitlist-description {
+  font-size: clamp(10.5px, 1.1vw, 12.5px);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  opacity: 0.9;
+  margin-bottom: clamp(1.75rem, 4vh, 2.75rem);
+  line-height: var(--lh-tight);
+}
+
+/* ------------------------------------------------------------------------
+   FORM & INPUT TREATMENT (EDITORIAL THIN LINE)
+   ------------------------------------------------------------------------ */
+.waitlist-form {
+  width: 100%;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid var(--border-primary);
+  transition: border-color 0.2s ease;
+}
+
+.input-group:focus-within {
+  border-bottom-color: var(--text-primary);
+}
+
+.waitlist-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-sans);
+  font-size: clamp(12px, 1.25vw, 14px);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-wider);
+  color: var(--text-primary);
+  padding: 0.85rem 0;
+  text-transform: uppercase;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+.waitlist-input::placeholder {
+  color: var(--text-primary);
+  opacity: 0.45;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.waitlist-input.input-error {
+  color: var(--text-primary);
+}
+
+/* Accessible Submit Button (Minimal Arrow Control) */
+.waitlist-submit {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  margin-right: -4px;
+  transition: opacity 0.2s ease;
+}
+
+.submit-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.waitlist-submit:hover .submit-arrow {
+  transform: translateX(4px);
+}
+
+.waitlist-submit:focus-visible {
+  outline: 1px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------------
+   FORM STATES
+   ------------------------------------------------------------------------ */
+.waitlist-error {
+  font-size: clamp(10px, 1vw, 11.5px);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-top: 0.85rem;
+  opacity: 0.85;
+}
+
+.waitlist-success {
+  width: 100%;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.success-text {
+  font-size: clamp(12px, 1.25vw, 14px);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-ultra);
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+/* Visually Hidden Utility for Screen Reader Accessibility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------------------------------------------------------------
+   RESPONSIVE LAYOUT
+   ------------------------------------------------------------------------ */
+@media (max-width: 640px) {
+  .waitlist-content {
+    max-width: 100%;
+  }
+
+  .waitlist-title {
+    font-size: 13.5px;
+    letter-spacing: 0.32em;
+  }
+
+  .waitlist-description {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    margin-bottom: 2rem;
+  }
+
+  .waitlist-input {
+    font-size: 11.5px;
+    padding: 0.75rem 0;
+  }
+}

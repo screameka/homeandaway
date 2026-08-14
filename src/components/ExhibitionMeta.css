@@ -1,0 +1,55 @@
+/* Exhibition Metadata Styling */
+.exhibition-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: clamp(2.5rem, 5.5vh, 4.5rem);
+  width: 100%;
+}
+
+.exhibition-location {
+  font-size: clamp(14px, 1.4vw, 17px);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-ultra);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: var(--lh-tight);
+}
+
+.exhibition-date {
+  font-size: clamp(11px, 1.15vw, 13px);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  opacity: 0.95;
+  line-height: var(--lh-tight);
+}
+
+/* Typographic Punctuation Divider Line (35px - 50px wide, 1px thin near-black) */
+.meta-divider {
+  width: 42px;
+  height: 1px;
+  background-color: var(--border-primary);
+  margin-top: clamp(1.5rem, 3.5vh, 2.75rem);
+  border: none;
+}
+
+@media (max-width: 640px) {
+  .exhibition-location {
+    font-size: 13px;
+    letter-spacing: 0.32em;
+  }
+  
+  .exhibition-date {
+    font-size: 10.5px;
+    letter-spacing: 0.25em;
+  }
+
+  .meta-divider {
+    width: 38px;
+    margin-top: 1.5rem;
+  }
+}
