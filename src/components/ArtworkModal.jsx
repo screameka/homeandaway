@@ -115,19 +115,33 @@ export function ArtworkModal({ artwork, onClose, onBidSuccess }) {
 
         {/* Modal Main Content */}
         <div className="modal-body-grid">
-          {/* Artwork Image Viewport */}
+          {/* Artwork Image Viewport / Coming Soon Canvas */}
           <div className="modal-image-wrapper">
-            <img
-              src={artwork.image}
-              alt={`${artwork.title} by ${artwork.artist}`}
-              className="modal-artwork-img"
-            />
+            {artwork.image ? (
+              <img
+                src={artwork.image}
+                alt={`${artwork.title} by ${artwork.artist}`}
+                className="modal-artwork-img"
+              />
+            ) : (
+              <div className="modal-placeholder-canvas">
+                <div className="placeholder-content">
+                  <div className="placeholder-watermark">HOME &amp; AWAY</div>
+                  <div className="placeholder-badge">
+                    <span className="placeholder-lock-icon">🔒</span>
+                    <span className="placeholder-main-text">UNVEILING NOV 2026</span>
+                    <span className="placeholder-sub-text">CATALOGUE LOT PREVIEW</span>
+                  </div>
+                  <div className="placeholder-footer-tag">{artwork.lotNumber} • LAGOS EXHIBITION</div>
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Details & Bidding Panel */}
+          {/* Details & Bidding Panel / Coming Soon Status */}
           <div className="modal-details-panel">
             <div className="modal-artist-header">
-              <span className="artist-label">ARTIST</span>
+              <span className="artist-label">ARTIST / RESIDENCY</span>
               <h4 className="artist-name">{artwork.artist}</h4>
             </div>
 
@@ -145,131 +159,157 @@ export function ArtworkModal({ artwork, onClose, onBidSuccess }) {
                 <dd className="spec-value">{artwork.year} — {artwork.medium}</dd>
               </div>
               <div className="spec-row">
-                <dt className="spec-label">DIMENSIONS</dt>
-                <dd className="spec-value">{artwork.dimensions}</dd>
+                <dt className="spec-label">STATUS</dt>
+                <dd className="spec-value">EXHIBITION LIVE IN NOVEMBER 2026</dd>
               </div>
             </dl>
 
-            {/* Auction Bidding Section */}
-            <div className="modal-auction-block">
-              <div className="auction-live-summary">
-                <div className="auction-stat">
-                  <span className="stat-label">CURRENT HIGH BID</span>
-                  <span className="stat-value">${currentBid.toLocaleString()} USD</span>
-                </div>
-                <div className="auction-stat">
-                  <span className="stat-label">TOTAL BIDS</span>
-                  <span className="stat-value">{bidCount} BIDS</span>
-                </div>
-              </div>
-
-              {/* Bidding Form */}
-              <form className="modal-bid-form" onSubmit={handleBidSubmit} noValidate>
-                <div className="bid-input-wrapper">
-                  <label htmlFor="modal-bid-amount" className="bid-field-label">
-                    YOUR BID (MIN: ${minNextBid.toLocaleString()} USD)
-                  </label>
-                  <div className="bid-amount-input-group">
-                    <span className="currency-prefix">$</span>
-                    <input
-                      id="modal-bid-amount"
-                      type="number"
-                      step={artwork.minIncrement}
-                      min={minNextBid}
-                      value={bidAmount}
-                      onChange={(e) => {
-                        setBidAmount(e.target.value);
-                        if (status === 'error') setStatus('idle');
-                      }}
-                      className="bid-input"
-                      placeholder={minNextBid.toString()}
-                      required
-                    />
-                    <span className="currency-suffix">USD</span>
-                  </div>
-                </div>
-
-                {/* Quick Increment Buttons */}
-                <div className="quick-increments">
-                  <span className="increments-label">QUICK INCREMENT:</span>
-                  <button
-                    type="button"
-                    className="inc-btn"
-                    onClick={() => handleQuickIncrement(500)}
-                  >
-                    +$500
-                  </button>
-                  <button
-                    type="button"
-                    className="inc-btn"
-                    onClick={() => handleQuickIncrement(1000)}
-                  >
-                    +$1,000
-                  </button>
-                  <button
-                    type="button"
-                    className="inc-btn"
-                    onClick={() => handleQuickIncrement(2500)}
-                  >
-                    +$2,500
-                  </button>
-                </div>
-
-                {/* Bidder Contact Info */}
-                <div className="bidder-info-grid">
-                  <div className="bid-input-wrapper">
-                    <label htmlFor="modal-bidder-name" className="bid-field-label">
-                      NAME / INITIALS
-                    </label>
-                    <input
-                      id="modal-bidder-name"
-                      type="text"
-                      value={bidderName}
-                      onChange={(e) => setBidderName(e.target.value)}
-                      placeholder="NAME OR ANONYMOUS"
-                      className="bid-text-input"
-                    />
-                  </div>
-
-                  <div className="bid-input-wrapper">
-                    <label htmlFor="modal-bidder-email" className="bid-field-label">
-                      CONFIRMATION EMAIL *
-                    </label>
-                    <input
-                      id="modal-bidder-email"
-                      type="email"
-                      value={bidderEmail}
-                      onChange={(e) => {
-                        setBidderEmail(e.target.value);
-                        if (status === 'error') setStatus('idle');
-                      }}
-                      placeholder="CONTACT EMAIL"
-                      className="bid-text-input"
-                      required
-                    />
-                  </div>
-                </div>
-
+            {/* Auction Coming Soon Block */}
+            {artwork.isComingSoon || !artwork.currentBid ? (
+              <div className="modal-coming-soon-block">
+                <div className="cs-status-badge">AUCTION OPENS NOVEMBER 2026</div>
+                <h4 className="cs-heading">CATALOGUE &amp; SILENT BIDDING UNVEILING SOON</h4>
+                <p className="cs-description">
+                  High-resolution photography, curatorial provenance, and silent auction bidding for {artwork.lotNumber} will unlock live when the Home &amp; Away inaugural exhibition opens in Lagos this November 2026.
+                </p>
                 <button
-                  type="submit"
-                  className="modal-bid-submit-btn"
-                  disabled={status === 'submitting'}
+                  type="button"
+                  className="modal-join-waitlist-btn"
+                  onClick={() => {
+                    onClose();
+                    setTimeout(() => {
+                      const waitlistEl = document.getElementById('waitlist');
+                      if (waitlistEl) {
+                        waitlistEl.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }, 150);
+                  }}
                 >
-                  {status === 'submitting' ? 'REGISTERING BID...' : `PLACE BID FOR ${artwork.lotNumber}`}
+                  JOIN WAITLIST FOR PRIVATE PREVIEW ACCESS →
                 </button>
+              </div>
+            ) : (
+              /* Auction Bidding Section (for active lots) */
+              <div className="modal-auction-block">
+                <div className="auction-live-summary">
+                  <div className="auction-stat">
+                    <span className="stat-label">CURRENT HIGH BID</span>
+                    <span className="stat-value">${currentBid.toLocaleString()} USD</span>
+                  </div>
+                  <div className="auction-stat">
+                    <span className="stat-label">TOTAL BIDS</span>
+                    <span className="stat-value">{bidCount} BIDS</span>
+                  </div>
+                </div>
 
-                {statusMsg && (
-                  <p
-                    className={`bid-status-alert ${
-                      status === 'success' ? 'status-success' : 'status-error'
-                    }`}
-                    role="alert"
+                {/* Bidding Form */}
+                <form className="modal-bid-form" onSubmit={handleBidSubmit} noValidate>
+                  <div className="bid-input-wrapper">
+                    <label htmlFor="modal-bid-amount" className="bid-field-label">
+                      YOUR BID (MIN: ${minNextBid.toLocaleString()} USD)
+                    </label>
+                    <div className="bid-amount-input-group">
+                      <span className="currency-prefix">$</span>
+                      <input
+                        id="modal-bid-amount"
+                        type="number"
+                        step={artwork.minIncrement}
+                        min={minNextBid}
+                        value={bidAmount}
+                        onChange={(e) => {
+                          setBidAmount(e.target.value);
+                          if (status === 'error') setStatus('idle');
+                        }}
+                        className="bid-input"
+                        placeholder={minNextBid.toString()}
+                        required
+                      />
+                      <span className="currency-suffix">USD</span>
+                    </div>
+                  </div>
+
+                  {/* Quick Increment Buttons */}
+                  <div className="quick-increments">
+                    <span className="increments-label">QUICK INCREMENT:</span>
+                    <button
+                      type="button"
+                      className="inc-btn"
+                      onClick={() => handleQuickIncrement(500)}
+                    >
+                      +$500
+                    </button>
+                    <button
+                      type="button"
+                      className="inc-btn"
+                      onClick={() => handleQuickIncrement(1000)}
+                    >
+                      +$1,000
+                    </button>
+                    <button
+                      type="button"
+                      className="inc-btn"
+                      onClick={() => handleQuickIncrement(2500)}
+                    >
+                      +$2,500
+                    </button>
+                  </div>
+
+                  {/* Bidder Contact Info */}
+                  <div className="bidder-info-grid">
+                    <div className="bid-input-wrapper">
+                      <label htmlFor="modal-bidder-name" className="bid-field-label">
+                        NAME / INITIALS
+                      </label>
+                      <input
+                        id="modal-bidder-name"
+                        type="text"
+                        value={bidderName}
+                        onChange={(e) => setBidderName(e.target.value)}
+                        placeholder="NAME OR ANONYMOUS"
+                        className="bid-text-input"
+                      />
+                    </div>
+
+                    <div className="bid-input-wrapper">
+                      <label htmlFor="modal-bidder-email" className="bid-field-label">
+                        CONFIRMATION EMAIL *
+                      </label>
+                      <input
+                        id="modal-bidder-email"
+                        type="email"
+                        value={bidderEmail}
+                        onChange={(e) => {
+                          setBidderEmail(e.target.value);
+                          if (status === 'error') setStatus('idle');
+                        }}
+                        placeholder="CONTACT EMAIL"
+                        className="bid-text-input"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="modal-bid-submit-btn"
+                    disabled={status === 'submitting'}
                   >
-                    {statusMsg}
-                  </p>
-                )}
-              </form>
-            </div>
+                    {status === 'submitting' ? 'REGISTERING BID...' : `PLACE BID FOR ${artwork.lotNumber}`}
+                  </button>
+
+                  {statusMsg && (
+                    <p
+                      className={`bid-status-alert ${
+                        status === 'success' ? 'status-success' : 'status-error'
+                      }`}
+                      role="alert"
+                    >
+                      {statusMsg}
+                    </p>
+                  )}
+                </form>
+              </div>
+            )}
 
             <div className="modal-curatorial">
               <span className="curatorial-label">CURATORIAL STATEMENT</span>

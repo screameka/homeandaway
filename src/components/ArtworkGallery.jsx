@@ -53,11 +53,11 @@ export function ArtworkGallery() {
           <div className="collapsed-info">
             <div className="collapsed-meta-row">
               <span className="collapsed-badge">EXHIBITION CATALOGUE</span>
-              <span className="collapsed-count">• 4 CURATED LOTS AVAILABLE</span>
+              <span className="collapsed-count">• UNVEILING NOVEMBER 2026</span>
             </div>
-            <h2 className="collapsed-title">WORKS &amp; LIVE AUCTION BIDDING</h2>
+            <h2 className="collapsed-title">WORKS &amp; LIVE AUCTION — COMING SOON</h2>
             <p className="collapsed-subtitle">
-              PREVIEW SCULPTURES AND SUBMIT SILENT BIDS FOR THE NOVEMBER 2026 INAUGURAL EDITION.
+              CATALOGUE LOTS AND SILENT BIDDING UNVEIL LIVE IN NOVEMBER 2026 FOR THE LAGOS INAUGURAL EDITION.
             </p>
           </div>
           <button
@@ -65,9 +65,9 @@ export function ArtworkGallery() {
             className="gallery-expand-btn"
             onClick={handleToggleExpand}
             aria-expanded="false"
-            aria-label="Expand Works Catalogue and Auction Bidding"
+            aria-label="Expand Works Catalogue Status"
           >
-            <span>VIEW CATALOGUE &amp; PLACE BIDS</span>
+            <span>PREVIEW CATALOGUE STATUS</span>
             <span className="expand-arrow" aria-hidden="true">↓</span>
           </button>
         </div>
@@ -102,40 +102,54 @@ export function ArtworkGallery() {
             {artworksList.map((artwork) => (
               <article
                 key={artwork.id}
-                className="artwork-card"
+                className="artwork-card artwork-card-coming-soon"
                 onClick={() => setSelectedArtwork(artwork)}
                 onKeyDown={(e) => handleCardKeyDown(e, artwork)}
                 tabIndex={0}
                 role="button"
-                aria-label={`View lot details and place bid for ${artwork.title} by ${artwork.artist}`}
+                aria-label={`Preview status for ${artwork.title} — Unveiling November 2026`}
               >
-                {/* Image Frame with Lot Badge & Hover Overlay */}
-                <div className="artwork-image-frame">
+                {/* Blank / Coming Soon Placeholder Frame */}
+                <div className="artwork-image-frame artwork-image-frame-placeholder">
                   <div className="card-lot-badge">{artwork.lotNumber}</div>
-                  <img
-                    src={artwork.image}
-                    alt={`${artwork.title} by ${artwork.artist}`}
-                    className="artwork-card-img"
-                    loading="lazy"
-                  />
+                  {artwork.image ? (
+                    <img
+                      src={artwork.image}
+                      alt={`${artwork.title} by ${artwork.artist}`}
+                      className="artwork-card-img"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="artwork-placeholder-canvas">
+                      <div className="placeholder-content">
+                        <div className="placeholder-watermark">HOME &amp; AWAY</div>
+                        <div className="placeholder-badge">
+                          <span className="placeholder-lock-icon">🔒</span>
+                          <span className="placeholder-main-text">UNVEILING NOV 2026</span>
+                          <span className="placeholder-sub-text">CATALOGUE LOT PREVIEW</span>
+                        </div>
+                        <div className="placeholder-footer-tag">{artwork.lotNumber} • INAUGURAL EDITION</div>
+                      </div>
+                    </div>
+                  )}
                   <div className="artwork-hover-overlay">
-                    <span className="overlay-text">BID / PREVIEW LOT →</span>
+                    <span className="overlay-text">VIEW LOT DETAILS →</span>
                   </div>
                 </div>
 
-                {/* Artwork Metadata & Live Pricing */}
+                {/* Artwork Metadata & Coming Soon Status */}
                 <div className="artwork-card-info">
                   <div className="card-artist-row">
                     <span className="card-artist">{artwork.artist}</span>
-                    <span className="card-status-badge">• {artwork.status}</span>
+                    <span className="card-status-badge card-status-coming-soon">• {artwork.status}</span>
                   </div>
                   <h3 className="card-title">{artwork.title}</h3>
                   <p className="card-medium">{artwork.medium}</p>
 
                   <div className="card-pricing-row">
                     <div className="price-block">
-                      <span className="price-label">CURRENT HIGH BID</span>
-                      <span className="price-value">${artwork.currentBid.toLocaleString()} USD</span>
+                      <span className="price-label">AUCTION STATUS</span>
+                      <span className="price-value price-value-coming-soon">OPENS NOV 2026</span>
                     </div>
                     <div className="bids-count-block">
                       <span className="bids-label">ESTIMATE</span>
