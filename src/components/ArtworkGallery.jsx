@@ -53,11 +53,11 @@ export function ArtworkGallery() {
           <div className="collapsed-info">
             <div className="collapsed-meta-row">
               <span className="collapsed-badge">EXHIBITION CATALOGUE</span>
-              <span className="collapsed-count">• UNVEILING NOVEMBER 2026</span>
+              <span className="collapsed-count">• 7 CURATED PAINTINGS • UNVEILING NOV 2026</span>
             </div>
-            <h2 className="collapsed-title">WORKS &amp; LIVE AUCTION — COMING SOON</h2>
+            <h2 className="collapsed-title">7 PAINTINGS &amp; LIVE AUCTION — COMING SOON</h2>
             <p className="collapsed-subtitle">
-              CATALOGUE LOTS AND SILENT BIDDING UNVEIL LIVE IN NOVEMBER 2026 FOR THE LAGOS INAUGURAL EDITION.
+              CATALOGUE LOTS AND SILENT BIDDING FOR ALL 7 PAINTINGS UNVEIL LIVE IN NOVEMBER 2026 FOR THE LAGOS INAUGURAL EDITION.
             </p>
           </div>
           <button
