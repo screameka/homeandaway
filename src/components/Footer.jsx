@@ -6,10 +6,9 @@ export function Footer() {
     <footer className="site-footer site-container">
       <div className="footer-divider" aria-hidden="true"></div>
       <div className="footer-content">
-        {/* Left: Wordmark & Art Division Imprint */}
+        {/* Left: Wordmark */}
         <div className="footer-left">
           <span className="footer-brand">HOME &amp; AWAY</span>
-          <span className="footer-imprint">ALIEN CANVAS</span>
         </div>
 
         {/* Center/Nav: Optional Quiet Quick Links */}

@@ -1,0 +1,464 @@
+/* ==========================================================================
+   ARTWORK LIGHTBOX MODAL & LIVE AUCTION BIDDING SYSTEM
+   ========================================================================== */
+
+.artwork-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(14, 14, 14, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  animation: modalFadeIn 0.25s ease-out forwards;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.artwork-modal-container {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  width: 100%;
+  max-width: 1040px;
+  max-height: 90vh;
+  max-height: 90dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ------------------------------------------------------------------------
+   MODAL HEADER BAR
+   ------------------------------------------------------------------------ */
+.modal-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem var(--container-pad);
+  border-bottom: 1px solid var(--border-primary);
+  background-color: var(--bg-primary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.modal-lot-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.badge-lot {
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background-color: var(--border-primary);
+  color: var(--bg-primary);
+  padding: 0.2rem 0.5rem;
+}
+
+.badge-status {
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: #1A6B3C;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-primary);
+  padding: 0.25rem 0.5rem;
+  transition: opacity 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  opacity: 0.6;
+}
+
+.close-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* ------------------------------------------------------------------------
+   MODAL BODY GRID
+   ------------------------------------------------------------------------ */
+.modal-body-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  padding: clamp(1.5rem, 3.5vw, 3rem);
+  align-items: start;
+}
+
+.modal-image-wrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #9E9D9B;
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 4rem;
+}
+
+.modal-artwork-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ------------------------------------------------------------------------
+   EDITORIAL DETAILS & AUCTION PANEL
+   ------------------------------------------------------------------------ */
+.modal-details-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  text-align: left;
+}
+
+.modal-artist-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.artist-label {
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.artist-name {
+  font-size: clamp(13px, 1.2vw, 15px);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.modal-artwork-title {
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: var(--fw-regular);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Specifications Table */
+.modal-spec-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  margin: 0;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.spec-label {
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.spec-value {
+  font-size: clamp(11px, 1vw, 12px);
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  text-align: right;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------------
+   AUCTION & LIVE BIDDING INTERFACE
+   ------------------------------------------------------------------------ */
+.modal-auction-block {
+  background-color: rgba(11, 11, 11, 0.04);
+  border: 1px solid var(--border-primary);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auction-live-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.auction-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.stat-label {
+  font-size: 9px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.stat-value {
+  font-size: clamp(14px, 1.4vw, 18px);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+/* Bid Form Controls */
+.modal-bid-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.bid-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  text-align: left;
+}
+
+.bid-field-label {
+  font-size: 9px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.bid-amount-input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-primary);
+  background-color: var(--bg-primary);
+  padding: 0 0.75rem;
+}
+
+.currency-prefix,
+.currency-suffix {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  user-select: none;
+}
+
+.bid-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0.65rem 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.bid-text-input {
+  width: 100%;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  padding: 0.55rem 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--text-primary);
+  outline: none;
+  text-transform: uppercase;
+}
+
+.bid-text-input::placeholder {
+  color: #777777;
+}
+
+/* Quick Increments */
+.quick-increments {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.increments-label {
+  font-size: 9px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-muted);
+  margin-right: 0.2rem;
+}
+
+.inc-btn {
+  background-color: transparent;
+  border: 1px solid var(--border-primary);
+  padding: 0.3rem 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.inc-btn:hover {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+.bidder-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.modal-bid-submit-btn {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  font-family: var(--font-sans);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 0.25rem;
+}
+
+.modal-bid-submit-btn:hover {
+  background-color: #262626;
+}
+
+.bid-status-alert {
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  padding: 0.6rem 0.85rem;
+  margin: 0;
+  border: 1px solid currentColor;
+}
+
+.status-success {
+  color: #0E5C2D;
+  background-color: rgba(14, 92, 45, 0.08);
+}
+
+.status-error {
+  color: #8C1C1C;
+  background-color: rgba(140, 28, 28, 0.08);
+}
+
+/* Curatorial Statement */
+.modal-curatorial {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 0.5rem;
+}
+
+.curatorial-label {
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.curatorial-text {
+  font-size: clamp(12px, 1.1vw, 13px);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS
+   ------------------------------------------------------------------------ */
+
+/* Mobile (≤767px): Stacked Single Column Layout */
+@media (max-width: 767px) {
+  .artwork-modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .modal-body-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1rem;
+  }
+
+  .modal-image-wrapper {
+    position: relative;
+    top: 0;
+  }
+
+  .bidder-info-grid {
+    grid-template-columns: 1fr;
+  }
+}

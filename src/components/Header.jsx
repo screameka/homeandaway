@@ -9,6 +9,7 @@ export function Header() {
       </div>
       <nav className="header-nav" aria-label="Main Navigation">
         <a href="#about" className="nav-link">ABOUT</a>
+        <a href="#works" className="nav-link">WORKS</a>
         <a href="#thelist" className="nav-link">THE LIST</a>
       </nav>
     </header>

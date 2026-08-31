@@ -1,0 +1,411 @@
+/* ==========================================================================
+   ARTWORK GALLERY GRID SECTION & COLLAPSIBLE AUCTION (SPACE-GREY THEME)
+   ========================================================================== */
+
+.artwork-gallery-section {
+  width: 100%;
+  margin-top: clamp(3.5rem, 8vh, 7rem);
+  margin-bottom: clamp(4rem, 9vh, 8rem);
+}
+
+/* ------------------------------------------------------------------------
+   COLLAPSED STATE: EDITORIAL TOGGLE BANNER
+   ------------------------------------------------------------------------ */
+.gallery-collapsed-banner {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  padding: clamp(1.75rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  text-align: left;
+  transition: background-color 0.25s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.gallery-collapsed-banner:hover {
+  background-color: #A6A5A3;
+}
+
+.collapsed-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 720px;
+}
+
+.collapsed-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.collapsed-badge {
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  background-color: var(--border-primary);
+  color: var(--bg-primary);
+  padding: 0.2rem 0.5rem;
+}
+
+.collapsed-count {
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.collapsed-title {
+  font-size: clamp(20px, 2.4vw, 30px);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.collapsed-subtitle {
+  font-size: clamp(11px, 1.1vw, 13px);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.gallery-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.75rem;
+  border: 1px solid var(--border-primary);
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  font-family: var(--font-sans);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.gallery-expand-btn:hover {
+  background-color: #262626;
+  transform: translateY(-1px);
+}
+
+.expand-arrow {
+  font-size: 14px;
+}
+
+/* ------------------------------------------------------------------------
+   EXPANDED STATE: SECTION HEADER & COLLAPSE ACTION
+   ------------------------------------------------------------------------ */
+.gallery-expanded-content {
+  animation: fadeInGrid 0.35s ease-out forwards;
+}
+
+@keyframes fadeInGrid {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gallery-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: clamp(2.5rem, 6vh, 4.5rem);
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-primary);
+  text-align: left;
+}
+
+.gallery-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.gallery-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.gallery-meta-label {
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.gallery-meta-title {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.15;
+}
+
+.gallery-collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-primary);
+  background-color: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.gallery-collapse-btn:hover {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+.gallery-subtitle {
+  font-size: clamp(11px, 1.1vw, 13px);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  max-width: 720px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------------
+   GALLERY GRID & ARTWORK CARDS
+   ------------------------------------------------------------------------ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  width: 100%;
+}
+
+.artwork-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+}
+
+.artwork-card:focus-visible .artwork-image-frame {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
+/* Image Frame Container & Lot Badge */
+.artwork-image-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #9E9D9B;
+  border: 1px solid var(--border-primary);
+  overflow: hidden;
+}
+
+.card-lot-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 5;
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  background-color: var(--border-primary);
+  color: var(--bg-primary);
+  padding: 0.2rem 0.5rem;
+}
+
+.artwork-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.artwork-card:hover .artwork-card-img {
+  transform: scale(1.04);
+}
+
+/* Hover Overlay */
+.artwork-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(11, 11, 11, 0.45);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+  z-index: 6;
+}
+
+.artwork-card:hover .artwork-hover-overlay {
+  opacity: 1;
+}
+
+.overlay-text {
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: #FFFFFF;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background-color: rgba(11, 11, 11, 0.4);
+}
+
+/* Metadata & Auction Pricing */
+.artwork-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.card-artist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-artist {
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.card-status-badge {
+  font-size: 9px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: #1A6B3C;
+}
+
+.card-title {
+  font-size: clamp(16px, 1.6vw, 20px);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.card-medium {
+  font-size: clamp(11px, 1vw, 13px);
+  font-weight: var(--fw-regular);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.card-pricing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 0.6rem;
+  margin-top: 0.35rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.price-block,
+.bids-count-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.price-label,
+.bids-label {
+  font-size: 9px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.price-value {
+  font-size: clamp(13px, 1.3vw, 16px);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+}
+
+.bids-value {
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+}
+
+/* ------------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS
+   ------------------------------------------------------------------------ */
+
+/* Tablet (768px – 1023px) */
+@media (min-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop (1280px+) */
+@media (min-width: 1280px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem 3.5rem;
+  }
+}
+
+/* Mobile (≤767px) */
+@media (max-width: 767px) {
+  .gallery-collapsed-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .gallery-expand-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

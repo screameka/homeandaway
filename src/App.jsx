@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ExhibitionInfo from './components/ExhibitionInfo';
+import ArtworkGallery from './components/ArtworkGallery';
 import WaitlistSignup from './components/WaitlistSignup';
 import Footer from './components/Footer';
 import './App.css';
@@ -20,6 +21,9 @@ function App() {
         {/* Exhibition Curatorial Statement */}
         <ExhibitionInfo />
 
+        {/* Selected Artworks Gallery Grid */}
+        <ArtworkGallery />
+
         {/* Waitlist / Email Capture Section */}
         <WaitlistSignup />
       </main>
@@ -31,3 +35,4 @@ function App() {
 }
 
 export default App;
+
