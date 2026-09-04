@@ -19,7 +19,7 @@ export function Footer() {
 
         {/* Right: Location & Copyright */}
         <div className="footer-right">
-          <span className="footer-location">LAGOS / UK</span>
+          <span className="footer-location">LAGOS</span>
           <span className="footer-copyright">&copy; 2026</span>
         </div>
       </div>
