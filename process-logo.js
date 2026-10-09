@@ -1,6 +1,5 @@
 import sharp from 'sharp';
 import path from 'path';
-import fileExists from 'fs';
 
 async function generateTransparentLogo() {
   const inputPath = path.resolve('src/assets/home-and-away-logo.jpg');

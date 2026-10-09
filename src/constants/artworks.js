@@ -2,10 +2,6 @@
    HOME & AWAY — EXHIBITION ARTWORK & AUCTION DATA CONFIGURATION
    ========================================================================== */
 
-import artwork1 from '../assets/artworks/artwork_1.jpg';
-import artwork2 from '../assets/artworks/artwork_2.jpg';
-import artwork3 from '../assets/artworks/artwork_3.jpg';
-import artwork4 from '../assets/artworks/artwork_4.jpg';
 
 export const GALLERY_HEADER = {
   sectionLabel: 'EXHIBITION CATALOGUE — UNVEILING NOVEMBER 2026',
