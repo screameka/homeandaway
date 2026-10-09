@@ -1,0 +1,504 @@
+/* ==========================================================================
+   OPEN CALL FOR ARTISTS SECTION
+   ========================================================================== */
+
+.open-call-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: clamp(4.5rem, 11vh, 9.5rem);
+  margin-bottom: clamp(6rem, 14vh, 11rem);
+}
+
+.open-call-content {
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* ------------------------------------------------------------------------
+   TYPOGRAPHY
+   ------------------------------------------------------------------------ */
+.open-call-title {
+  font-size: clamp(14px, 1.4vw, 17px);
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: var(--tracking-ultra, 0.35em);
+  text-transform: uppercase;
+  color: var(--text-primary, #0B0B0B);
+  margin-bottom: 0.5rem;
+  line-height: var(--lh-tight, 1.2);
+}
+
+.open-call-intro {
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: var(--fw-regular, 400);
+  line-height: var(--lh-editorial, 1.6);
+  color: var(--text-secondary, #383838);
+  margin-bottom: 0.75rem;
+}
+
+.open-call-deadline-note {
+  font-size: clamp(10px, 1.0vw, 11.5px);
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: var(--tracking-wider, 0.18em);
+  text-transform: uppercase;
+  color: var(--text-muted, #555555);
+  margin-bottom: clamp(1.75rem, 4vh, 2.75rem);
+  line-height: var(--lh-tight, 1.2);
+}
+
+/* ------------------------------------------------------------------------
+   FORM & INPUT TREATMENT (EDITORIAL THIN LINE)
+   ------------------------------------------------------------------------ */
+.open-call-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-fields-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.field-label {
+  font-size: clamp(9px, 0.9vw, 10.5px);
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-secondary, #383838);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.field-subtext {
+  font-size: clamp(10px, 1vw, 11px);
+  font-weight: var(--fw-regular, 400);
+  color: var(--text-muted, #555555);
+  margin-bottom: 0.5rem;
+}
+
+.label-counter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.char-counter {
+  font-size: clamp(9px, 0.9vw, 10px);
+  font-weight: var(--fw-medium, 500);
+  letter-spacing: 0.1em;
+  color: var(--text-muted, #555555);
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid var(--border-primary, rgba(11, 11, 11, 0.2));
+  transition: border-color 0.2s ease;
+  padding-bottom: 0.25rem;
+}
+
+.input-group:focus-within {
+  border-bottom-color: var(--text-primary, #0B0B0B);
+}
+
+.open-call-input {
+  width: 100%;
+  min-height: 44px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: clamp(12px, 1.25vw, 14px);
+  font-weight: var(--fw-medium, 500);
+  letter-spacing: var(--tracking-wider, 0.15em);
+  color: var(--text-primary, #0B0B0B);
+  padding: 0.6rem 0;
+  text-transform: uppercase;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.open-call-input::placeholder {
+  color: var(--text-primary, #0B0B0B);
+  opacity: 0.4;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider, 0.15em);
+}
+
+/* Textarea styling */
+.textarea-group {
+  border-bottom: 1px solid var(--border-primary, rgba(11, 11, 11, 0.2));
+  padding-bottom: 0.5rem;
+}
+
+.open-call-textarea {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border-subtle, rgba(11, 11, 11, 0.2));
+  outline: none;
+  font-family: inherit;
+  font-size: clamp(12px, 1.25vw, 13.5px);
+  font-weight: var(--fw-regular, 400);
+  line-height: var(--lh-editorial, 1.6);
+  color: var(--text-primary, #0B0B0B);
+  padding: 0.75rem;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color 0.2s ease;
+}
+
+.open-call-textarea:focus {
+  border-color: var(--text-primary, #0B0B0B);
+}
+
+.open-call-textarea::placeholder {
+  color: var(--text-muted, #555555);
+  opacity: 0.6;
+  text-transform: uppercase;
+  font-size: clamp(11px, 1vw, 12px);
+  letter-spacing: var(--tracking-wider, 0.12em);
+}
+
+/* ------------------------------------------------------------------------
+   RADIO OPTIONS (MINIMALIST EDITORIAL LOOK)
+   ------------------------------------------------------------------------ */
+.radio-group-container {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--border-subtle, rgba(11, 11, 11, 0.2));
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.radio-option:hover,
+.radio-option.is-selected {
+  border-color: var(--text-primary, #0B0B0B);
+  background-color: rgba(11, 11, 11, 0.04);
+}
+
+.radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-custom {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--text-primary, #0B0B0B);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.radio-option.is-selected .radio-custom::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--text-primary, #0B0B0B);
+}
+
+.radio-label-text {
+  font-size: clamp(11px, 1vw, 12px);
+  font-weight: var(--fw-medium, 500);
+  letter-spacing: var(--tracking-wider, 0.15em);
+  text-transform: uppercase;
+  color: var(--text-primary, #0B0B0B);
+}
+
+/* Visible Focus State for Radio Options */
+.radio-option:has(.radio-input:focus-visible) {
+  outline: 2px solid var(--text-primary, #0B0B0B);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------------
+   IMAGE UPLOAD & THUMBNAIL PREVIEWS
+   ------------------------------------------------------------------------ */
+.upload-group {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.file-dropzone {
+  margin-top: 0.5rem;
+}
+
+.file-input-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.file-dropzone-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  border: 1px dashed var(--border-primary, #0B0B0B);
+  background: transparent;
+  color: var(--text-primary, #0B0B0B);
+  font-size: clamp(10.5px, 1vw, 12px);
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: var(--tracking-wider, 0.18em);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.file-dropzone-button:hover,
+.file-dropzone-button:focus-within {
+  background: rgba(11, 11, 11, 0.05);
+  border-style: solid;
+}
+
+.file-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.file-preview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border: 1px solid var(--border-subtle, rgba(11, 11, 11, 0.2));
+  padding: 0.4rem;
+  background-color: rgba(11, 11, 11, 0.02);
+}
+
+.preview-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.remove-file-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  border-radius: 50%;
+  background: rgba(11, 11, 11, 0.85);
+  color: #ffffff;
+  border: none;
+  font-size: 14px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.remove-file-btn:hover {
+  background: #dc2626;
+}
+
+.preview-file-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.preview-file-name {
+  font-size: 10px;
+  font-weight: var(--fw-medium, 500);
+  color: var(--text-primary, #0B0B0B);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.preview-file-size {
+  font-size: 9px;
+  color: var(--text-muted, #555555);
+}
+
+/* ------------------------------------------------------------------------
+   SUBMIT BUTTON & STATES
+   ------------------------------------------------------------------------ */
+.submit-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+.open-call-submit {
+  background: transparent;
+  border: 1px solid var(--border-primary, rgba(11, 11, 11, 0.3));
+  cursor: pointer;
+  color: var(--text-primary, #0B0B0B);
+  font-size: clamp(10px, 1vw, 11.5px);
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  min-height: 44px;
+  transition: all 0.25s ease;
+}
+
+.open-call-submit:hover:not(:disabled) {
+  background: var(--text-primary, #0B0B0B);
+  color: var(--bg-primary, #AFAEAC);
+  border-color: var(--text-primary, #0B0B0B);
+}
+
+.open-call-submit:focus-visible {
+  outline: 2px solid var(--text-primary, #0B0B0B);
+  outline-offset: 2px;
+}
+
+.open-call-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submit-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.open-call-submit:hover:not(:disabled) .submit-arrow {
+  transform: translateX(4px);
+}
+
+/* Form state feedback messages */
+.open-call-error {
+  font-size: clamp(10px, 1vw, 11.5px);
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: var(--tracking-widest, 0.25em);
+  text-transform: uppercase;
+  color: #b91c1c;
+  margin-top: 0.85rem;
+}
+
+.open-call-success,
+.open-call-closed {
+  width: 100%;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-primary, rgba(11, 11, 11, 0.2));
+  border-top: 1px solid var(--border-primary, rgba(11, 11, 11, 0.2));
+}
+
+.success-text {
+  font-size: clamp(12px, 1.25vw, 14px);
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: var(--tracking-ultra, 0.35em);
+  text-transform: uppercase;
+  color: var(--text-primary, #0B0B0B);
+  line-height: var(--lh-editorial, 1.6);
+  display: block;
+}
+
+.closed-title {
+  font-size: clamp(13px, 1.3vw, 15px);
+  font-weight: var(--fw-semibold, 600);
+  letter-spacing: var(--tracking-ultra, 0.35em);
+  text-transform: uppercase;
+  color: var(--text-primary, #0B0B0B);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.closed-description {
+  font-size: clamp(12px, 1.2vw, 13.5px);
+  font-weight: var(--fw-regular, 400);
+  color: var(--text-secondary, #383838);
+}
+
+/* ------------------------------------------------------------------------
+   RESPONSIVE LAYOUT
+   ------------------------------------------------------------------------ */
+@media (max-width: 640px) {
+  .open-call-content {
+    max-width: 100%;
+  }
+
+  .open-call-title {
+    font-size: 13.5px;
+    letter-spacing: 0.32em;
+  }
+
+  .two-col-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .file-preview-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .open-call-input {
+    font-size: 11.5px;
+  }
+
+  .open-call-submit {
+    width: 100%;
+  }
+}

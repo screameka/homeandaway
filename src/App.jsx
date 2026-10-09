@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import ExhibitionInfo from './components/ExhibitionInfo';
 import ArtworkGallery from './components/ArtworkGallery';
+import OpenCall from './components/OpenCall';
 import WaitlistSignup from './components/WaitlistSignup';
 import Footer from './components/Footer';
 import './App.css';
@@ -23,6 +24,9 @@ function App() {
 
         {/* Selected Artworks Gallery Grid */}
         <ArtworkGallery />
+
+        {/* Open Call for Artists Section */}
+        <OpenCall />
 
         {/* Waitlist / Email Capture Section */}
         <WaitlistSignup />
