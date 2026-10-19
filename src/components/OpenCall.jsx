@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '../lib/supabase';
+import { Accordion } from './Accordion';
 import './OpenCall.css';
 
 // Submissions close 31 October 2026, 23:59:59 Lagos time (UTC+1)
@@ -9,6 +10,7 @@ const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 const MAX_IMAGE_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
 
 export function OpenCall() {
+  const [isExpanded, setIsExpanded] = useState(false);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
@@ -31,6 +33,20 @@ export function OpenCall() {
 
   // Check deadline (driven by single constant at top of file)
   const isClosed = new Date() > new Date(OPEN_CALL_DEADLINE);
+
+  // Auto-expand and scroll if URL contains #open-call hash
+  useEffect(() => {
+    const handleHashCheck = () => {
+      if (window.location.hash === '#open-call') {
+        setIsExpanded(true);
+      }
+    };
+
+    handleHashCheck();
+    window.addEventListener('hashchange', handleHashCheck);
+
+    return () => window.removeEventListener('hashchange', handleHashCheck);
+  }, []);
 
   // Manage file preview URLs & cleanup memory leaks
   useEffect(() => {
@@ -148,6 +164,7 @@ export function OpenCall() {
     try {
       // 1. Upload images to Supabase Storage bucket "open-call-submissions"
       const uploadedUrls = [];
+      const uploadedPaths = [];
 
       for (const file of files) {
         const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
@@ -162,6 +179,11 @@ export function OpenCall() {
 
         if (uploadError) {
           console.error('Supabase image upload error:', uploadError);
+          // Clean up any files uploaded in this batch
+          if (uploadedPaths.length > 0) {
+            await supabase.storage.from('open-call-submissions').remove(uploadedPaths);
+          }
+
           let errMsg = 'IMAGE UPLOAD FAILED. PLEASE TRY AGAIN OR CHECK FILE FORMAT/SIZE.';
           if (uploadError.message && uploadError.message.toLowerCase().includes('bucket not found')) {
             errMsg = 'STORAGE BUCKET NOT FOUND. PLEASE CONTACT EXHIBITION ADMINISTRATORS.';
@@ -170,6 +192,8 @@ export function OpenCall() {
           setStatus('error');
           return;
         }
+
+        uploadedPaths.push(filePath);
 
         const { data: publicUrlData } = supabase.storage
           .from('open-call-submissions')
@@ -200,19 +224,35 @@ export function OpenCall() {
 
       if (insertError) {
         console.error('Supabase open call insert error:', insertError);
+
+        // Roll back uploaded storage files so no orphan files remain
+        if (uploadedPaths.length > 0) {
+          try {
+            await supabase.storage.from('open-call-submissions').remove(uploadedPaths);
+          } catch (cleanupErr) {
+            console.warn('Storage rollback warning:', cleanupErr);
+          }
+        }
+
         let friendlyMessage = 'FAILED TO SUBMIT YOUR APPLICATION. PLEASE TRY AGAIN LATER.';
         
         if (
           insertError.code === '42501' ||
           (insertError.message && insertError.message.toLowerCase().includes('permission denied'))
         ) {
-          friendlyMessage = 'UNABLE TO COMPLETE SUBMISSION AT THIS TIME. PLEASE TRY AGAIN LATER.';
+          friendlyMessage = 'UNABLE TO COMPLETE SUBMISSION AT THIS TIME (PERMISSION DENIED). PLEASE CHECK RLS POLICIES.';
+        } else if (
+          insertError.code === 'PGRST205' ||
+          (insertError.message && insertError.message.toLowerCase().includes('could not find the table'))
+        ) {
+          friendlyMessage = 'DATABASE TABLE "open_call_submissions" NOT FOUND. PLEASE RUN THE SUPABASE TABLE MIGRATION.';
         }
         
         setServerError(friendlyMessage);
         setStatus('error');
       } else {
         setStatus('success');
+        setIsExpanded(true);
         setFullName('');
         setEmail('');
         setWhatsapp('');
@@ -224,6 +264,9 @@ export function OpenCall() {
         setYear('');
         setStatement('');
         setFiles([]);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
       }
     } catch (err) {
       console.error('Unexpected open call submission error:', err);
@@ -235,14 +278,16 @@ export function OpenCall() {
   return (
     <section id="open-call" className="open-call-section site-container">
       <div className="open-call-content">
-        <h2 className="open-call-title">OPEN CALL</h2>
-        <p className="open-call-intro">
-          Artists are invited to be part of the exhibition in one of two ways:
-          (1) submit existing work from their collection, or (2) create a painting for the theme &ldquo;Home &amp; Away&rdquo;.
-        </p>
-        <p className="open-call-deadline-note">
-          SUBMISSIONS CLOSE 31 OCTOBER 2026. ALL SIZES AND DIMENSIONS ARE ACCEPTED.
-        </p>
+        <Accordion
+          id="open-call"
+          title="OPEN CALL"
+          isOpen={isExpanded}
+          onToggle={setIsExpanded}
+          ariaLabel={isExpanded ? 'Collapse Open Call Submissions' : 'Expand Open Call Submissions'}
+        >
+          <p className="open-call-deadline-note">
+            SUBMISSIONS CLOSE 31 OCTOBER 2026.
+          </p>
 
         {isClosed ? (
           <div className="open-call-closed" role="status">
@@ -572,6 +617,7 @@ export function OpenCall() {
             )}
           </form>
         )}
+        </Accordion>
       </div>
     </section>
   );

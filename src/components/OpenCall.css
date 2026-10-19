@@ -33,20 +33,13 @@
   line-height: var(--lh-tight, 1.2);
 }
 
-.open-call-intro {
-  font-size: clamp(12px, 1.2vw, 14px);
-  font-weight: var(--fw-regular, 400);
-  line-height: var(--lh-editorial, 1.6);
-  color: var(--text-secondary, #383838);
-  margin-bottom: 0.75rem;
-}
-
 .open-call-deadline-note {
   font-size: clamp(10px, 1.0vw, 11.5px);
   font-weight: var(--fw-semibold, 600);
   letter-spacing: var(--tracking-wider, 0.18em);
   text-transform: uppercase;
   color: var(--text-muted, #555555);
+  margin-top: 1.5rem;
   margin-bottom: clamp(1.75rem, 4vh, 2.75rem);
   line-height: var(--lh-tight, 1.2);
 }
